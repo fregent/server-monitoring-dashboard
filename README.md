@@ -20,7 +20,7 @@ Interface web de monitoring serveur en temps réel — CPU, mémoire, espace dis
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/votre-utilisateur/server-monitor.git
+git clone https://github.com/fregent/server-monitoring-dashboard
 cd server-monitor
 ```
 
