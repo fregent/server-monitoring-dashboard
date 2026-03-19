@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Server Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Server Monitor</h1>
+    <span id="last-update">Dernière mise à jour : --</span>
+  </header>
+
+  <main>
+
+    <!-- CPU -->
+    <div class="card" id="card-cpu">
+      <h2>CPU</h2>
+      <canvas id="chart-cpu"></canvas>
+      <p class="metric-value" id="value-cpu">--%</p>
+    </div>
+
+    <!-- Mémoire -->
+    <div class="card" id="card-memory">
+      <h2>Mémoire RAM</h2>
+      <canvas id="chart-memory"></canvas>
+      <p class="metric-value" id="value-memory">-- Mo / -- Mo</p>
+    </div>
+
+    <!-- Disque -->
+    <div class="card" id="card-disk">
+      <h2>Espace Disque</h2>
+      <canvas id="chart-disk"></canvas>
+      <p class="metric-value" id="value-disk">-- Go / -- Go</p>
+    </div>
+
+    <!-- Services -->
+    <div class="card" id="card-services">
+      <h2>Services</h2>
+      <ul id="services-list">
+        <li>Chargement...</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

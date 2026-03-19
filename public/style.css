@@ -1,0 +1,85 @@
+/* Reset & base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f1117;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: #1a1d27;
+  border-bottom: 1px solid #2e3244;
+}
+
+header h1 { font-size: 1.4rem; }
+
+#last-update {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Grille */
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* Cards */
+.card {
+  background: #1a1d27;
+  border: 1px solid #2e3244;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.3s;
+}
+
+.card h2 {
+  font-size: 1rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.8rem;
+}
+
+/* Alertes — seuils dépassés */
+.card.warning { border-color: #f59e0b; }
+.card.danger  { border-color: #ef4444; }
+
+.card.warning .metric-value { color: #f59e0b; }
+.card.danger  .metric-value { color: #ef4444; }
+
+/* Services */
+#services-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+#services-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.8rem;
+  background: #0f1117;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.status-active  { color: #22c55e; font-weight: bold; }
+.status-inactif { color: #ef4444; font-weight: bold; }
