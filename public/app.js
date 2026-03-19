@@ -7,6 +7,30 @@ const THRESHOLDS = {
   disk:   { warning: 70, danger: 90 }   // en %
 };
 
+// ─── Logout ───────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.createElement('button');
+  btn.textContent = 'Déconnexion';
+  btn.style.cssText = 'padding:0.4rem 1rem;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;';
+  btn.addEventListener('click', async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    window.location.href = '/login';
+  });
+  document.querySelector('header').appendChild(btn);
+});
+
+// ─── Redémarrage de service ───────────────────────────────────
+async function restartService(name) {
+  if (!confirm(`Redémarrer ${name} ?`)) return;
+  try {
+    const res = await fetch(`/api/services/${name}/restart`, { method: 'POST' });
+    const data = await res.json();
+    alert(res.ok ? data.message : `Erreur : ${data.error}`);
+  } catch (e) {
+    alert('Erreur réseau');
+  }
+}
+
 // ─── Initialisation des graphiques ───────────────────────────
 function createDoughnutChart(id, label, color) {
   const ctx = document.getElementById(id).getContext('2d');
@@ -76,6 +100,10 @@ function renderMetrics(data) {
     <li>
       <span>${s.name}</span>
       <span class="status-${s.status}">${s.status}</span>
+      <button onclick="restartService('${s.name}')"
+        style="padding:0.2rem 0.6rem;background:#3b82f6;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:0.8rem;">
+        ↺ Restart
+      </button>
     </li>
   `).join('');
 

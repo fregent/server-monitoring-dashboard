@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Connexion — Server Monitor</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .login-card {
+      background: #1a1d27;
+      border: 1px solid #2e3244;
+      border-radius: 12px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 380px;
+    }
+    .login-card h1 { margin-bottom: 1.5rem; font-size: 1.3rem; }
+    .login-card input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      background: #0f1117;
+      border: 1px solid #2e3244;
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 1rem;
+    }
+    .login-card button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .login-card button:hover { background: #2563eb; }
+    #error-msg {
+      color: #ef4444;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h1>🖥️ Server Monitor</h1>
+      <input type="text"     id="username" placeholder="Identifiant" />
+      <input type="password" id="password" placeholder="Mot de passe" />
+      <button id="btn-login">Se connecter</button>
+      <p id="error-msg">Identifiants incorrects.</p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('btn-login').addEventListener('click', async () => {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (res.ok) {
+        window.location.href = '/';
+      } else {
+        document.getElementById('error-msg').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
