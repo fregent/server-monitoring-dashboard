@@ -50,6 +50,11 @@
   </style>
 </head>
 <body>
+  <script>
+    // Si déjà connecté, rediriger immédiatement vers le dashboard
+    fetch('/api/auth/me')
+      .then(res => { if (res.ok) window.location.href = '/'; });
+  </script>
   <div class="login-container">
     <div class="login-card">
       <h1>🖥️ Server Monitor</h1>

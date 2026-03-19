@@ -116,6 +116,13 @@ function renderMetrics(data) {
 async function fetchMetrics() {
   try {
     const response = await fetch('/api/metrics');
+
+    // Si la session a expiré, rediriger vers le login
+    if (response.status === 401) {
+      window.location.href = '/login';
+      return;
+    }
+
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     renderMetrics(data);

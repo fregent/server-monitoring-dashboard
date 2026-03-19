@@ -24,7 +24,14 @@ app.use(session({
 // Middleware de protection des routes
 function requireAuth(req, res, next) {
   if (req.session && req.session.authenticated) return next();
-  res.status(401).json({ error: 'Non authentifié' });
+
+  // Les appels API reçoivent un 401 JSON (fetch côté client gérera la redirection)
+  if (req.originalUrl.startsWith('/api/')) {
+    return res.status(401).json({ error: 'Non authentifié' });
+  }
+
+  // Les accès directs aux pages sont redirigés vers /login
+  res.redirect('/login');
 }
 
 // Routes publiques
