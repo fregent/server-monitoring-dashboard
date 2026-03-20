@@ -6,6 +6,10 @@ Interface web de monitoring serveur en temps réel — CPU, mémoire, espace dis
 
 ---
 
+<img width="1365" height="520" alt="picture" src="https://github.com/user-attachments/assets/3f7c7c83-8338-41bf-9660-de7b3d2779e9" />
+
+
+
 ## 📋 Prérequis
 
 - [Node.js](https://nodejs.org/) v18 ou supérieur
